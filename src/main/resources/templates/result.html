@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="ru">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор расчета калорий</title>
+    <link rel="stylesheet" href="css/st.css">
+</head>
+<body>
+<form>
+    <button formaction="/user-page" formmethod="get" type="submit">Личный кабинет</button>
+    <button formaction="/shopping-list" formmethod="get" type="submit">Список покупок</button>
+</form>
+<form>
+    <div>
+<table>
+    <thead>
+    <tr>
+        <th></th>
+        <th>Название</th>
+        <th>Белки</th>
+        <th>Жиры</th>
+        <th>Углеводы</th>
+        <th>Калории</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${AllUserProducts}">
+        <td>
+        <input type="radio" id="radio" checked="checked"
+               name="idSelectProduct" th:value="${product.id}">
+        </td>
+        <label for="radio">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.protein}"></td>
+        <td th:text="${product.fat}"></td>
+        <td th:text="${product.carbohydrates}"></td>
+        <td th:text="${product.kcal}"></td>
+        </label>
+    </tr>
+    </tbody>
+</table>
+    </div>
+    <div>
+        <button formaction="/add-product" formmethod="get" type="submit">Добавить</button>
+        <button formaction="/delete" formmethod="get" type="submit">Удалить</button>
+        <button formaction="/edite" formmethod="get" type="submit">Редактировать</button>
+        <button formaction="/add-line" formmethod="get" type="submit">Добавить в список покупок</button>
+    </div>
+</form>
+
+
+
+</body>
+</html>

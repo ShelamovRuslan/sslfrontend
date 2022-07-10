@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список покупок</title>
+</head>
+<body>
+<form>
+    <button formaction="/user-page" formmethod="get" type="submit">Личный кабинет</button>
+    <button formaction="/all-products" formmethod="get" type="submit">Все продукты</button>
+</form>
+<form>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Название</th>
+                <th>Колличество</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="line:${shoppingList}">
+                <td>
+                    <input type="radio" id="radio" checked="checked"
+                           name="idSelectLine" th:value="${line.id}">
+                </td>
+                <label for="radio">
+                    <td th:text="${line.product.name}"></td>
+                    <td th:text="${line.quantity}+грам"></td>
+
+                </label>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button formaction="/delete-line" formmethod="get" type="submit">Удалить</button>
+        <button formaction="/edite-line" formmethod="get" type="submit">Редактировать</button>
+    </div>
+<p>Продукты из заданного списока содержат</p>
+    <table>
+
+        <tbody>
+        <tr>
+            <td th:text="${SumKcal}">
+            </td>
+            <td>каллорий</td>
+        </tr>
+        <tr>
+            <td th:text="${SumProtein}">
+            </td>
+            <td>белков</td>
+        </tr>
+        <tr>
+            <td th:text="${SumFat}">
+            </td>
+            <td>жиров</td>
+        </tr>
+        <tr>
+            <td th:text="${SumCarbohydrates}">
+            </td>
+            <td>углеводов</td>
+        </tr>
+        <tr>
+            <td th:text="${ProportionProtein}">
+            </td>
+            <td>% содержания белков</td>
+        </tr>
+        <tr>
+            <td th:text="${ProportionFat}">
+            </td>
+            <td>% содержания жиров</td>
+        </tr>
+        <tr>
+            <td th:text="${ProportionCarbohydrates}">
+            </td>
+            <td>% содержания углеводов</td>
+        </tr>
+        </tbody>
+    </table>
+
+</form>
+</body>
+</html>
